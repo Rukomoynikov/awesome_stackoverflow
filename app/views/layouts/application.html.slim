@@ -1,0 +1,20 @@
+html
+  head
+    title AwesomeStackoverflow
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = stylesheet_link_tag 'application',
+            media: 'all',
+            'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application',
+            'data-turbolinks-track': 'reload'
+  body
+    nav.navbar.is-link role="navigation" aria-label="main navigation"
+      .container
+        .navbar-menu
+          .navbar-start
+            = link_to 'Questions', questions_path, class: 'navbar-item'
+
+    .container
+      = yield
