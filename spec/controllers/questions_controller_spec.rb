@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe QuestionsController, type: :controller do
@@ -77,7 +79,7 @@ RSpec.describe QuestionsController, type: :controller do
       end
 
       it 'changes question attributes' do
-        patch :update, params: { id: question, question: { title: 'New title', text: 'New text'} }
+        patch :update, params: { id: question, question: { title: 'New title', text: 'New text' } }
         question.reload
 
         expect(question.title).to eq 'New title'
