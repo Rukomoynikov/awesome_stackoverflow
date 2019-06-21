@@ -4,7 +4,9 @@ class Questions::AnswersController < ApplicationController
   before_action :set_question, only: [:create]
 
   def create
-    if @question.answers << Answer.new(answer_params)
+    @answer = @question.answers.new(answer_params)
+
+    if @answer.save
       redirect_to @question
     else
       render :new
