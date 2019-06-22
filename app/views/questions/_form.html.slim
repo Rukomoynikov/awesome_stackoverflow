@@ -1,3 +1,5 @@
+= render 'shared/errors', resource: @question
+
 = form_with model: question do |f|
   .field
     = f.label :title, class: 'label'
@@ -7,7 +9,7 @@
   .field
     = f.label :text, class: 'label'
     .control
-      = f.text_field :text, class: 'input'
+      = f.text_area :text, class: 'input'
 
   .field
     = f.submit class: 'button is-link'
