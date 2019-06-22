@@ -17,4 +17,6 @@ html
             = link_to 'Questions', questions_path, class: 'navbar-item'
 
     .container
+      p.notice = notice
+      p.alert = alert
       = yield
