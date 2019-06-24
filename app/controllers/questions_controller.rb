@@ -36,9 +36,13 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    question.delete
+    if question.author.id == current_user.id
+      question.delete
 
-    redirect_to questions_path
+      redirect_to questions_path
+    else
+      redirect_to question, notice: 'Sorry you can\'t delete this question'
+    end
   end
 
   private

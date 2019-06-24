@@ -1,0 +1,2 @@
+- if user_signed_in? && question.author.id == current_user.id
+  = link_to 'Delete question', question_path(question), :method => :delete
