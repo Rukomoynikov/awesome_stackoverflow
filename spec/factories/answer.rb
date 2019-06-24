@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
+  sequence :text do |n|
+    "Answer number #{ n }"
+  end
+
   factory :answer do
-    text { 'Question body' }
+    text
     question
     author { create(:user) }
 

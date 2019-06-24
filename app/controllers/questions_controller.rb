@@ -52,6 +52,12 @@ class QuestionsController < ApplicationController
 
     helper_method :question
 
+    def answers
+      @answers ||= @question.answers
+    end
+
+    helper_method :answers
+
     def question_params
       params.require(:question).permit(:title, :text)
     end

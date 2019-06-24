@@ -2,4 +2,10 @@ h1.title = question.title
 
 == question.text
 
+h2.subtitle Comments:
+
+= render partial: "answer",
+        collection: answers,
+        as: :answer
+
 = render 'controls'
