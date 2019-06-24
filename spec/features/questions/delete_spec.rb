@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'User can delete question', %q{
+feature 'User can delete question', "
   In order to delete wrong question
   As an authenticated user
   I'd like to have posibility delete question
-} do
+" do
   given!(:user) { create(:user) }
   given!(:question) { create(:question, author: user) }
 

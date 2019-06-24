@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'User can add answer to question', %q{
+feature 'User can add answer to question', "
   In order to delete wrong answer
   As an authenticated user
   I'd like to have posibility delete answer
-} do
+" do
   given!(:user) { create(:user) }
   given!(:question) { create(:question, author: user) }
 

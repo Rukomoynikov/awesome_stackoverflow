@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'User can delete answer', %q{
+feature 'User can delete answer', "
   In order to delete wrong answer
   As an authenticated user
   I'd like to have posibility delete answer
-} do
+" do
   given!(:user) { create(:user) }
   given!(:question) { create(:question, author: user) }
-  given!(:answer) { create(:answer, question: question, author: user ) }
+  given!(:answer) { create(:answer, question: question, author: user) }
 
   context 'authenticated user' do
     context 'author of answer' do

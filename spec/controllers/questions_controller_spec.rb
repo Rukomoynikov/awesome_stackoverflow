@@ -120,7 +120,7 @@ RSpec.describe QuestionsController, type: :controller do
   describe 'DELETE #destroy' do
     context 'author of question' do
       before { login(user) }
-      let!(:question) { create(:question, author: user ) }
+      let!(:question) { create(:question, author: user) }
 
       it 'deletes the question' do
         expect {
@@ -136,7 +136,7 @@ RSpec.describe QuestionsController, type: :controller do
 
     context 'nonauthor of question' do
       before { login(user) }
-      let!(:question) { create(:question, author: create(:user) ) }
+      let!(:question) { create(:question, author: create(:user)) }
 
       it 'can\'t delete the question' do
         expect {

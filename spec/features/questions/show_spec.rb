@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'View question', %q{
+feature 'View question', "
   In order to view question details
   As an authenticated user
   I'd like to open question page and see question
-} do
+" do
   given!(:question) { create(:question) }
   given!(:answers) { create_list(:answer, 3, question: question) }
 
