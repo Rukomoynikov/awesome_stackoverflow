@@ -1,1 +1,7 @@
-div = answer.text
+div.levels
+  .levels__left = answer.text
+  - if user_signed_in? && answer.author.id == current_user.id
+    .levels__right
+      = link_to 'Delete answer',
+              question_answer_path(question, answer),
+              method: :delete

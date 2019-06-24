@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   root to: 'questions#index'
 
   resources :questions do
-    resources :answers, only: [:create, :new], controller: 'questions/answers'
+    resources :answers,
+              only: [:create, :new, :destroy],
+              controller: 'questions/answers'
   end
 end
