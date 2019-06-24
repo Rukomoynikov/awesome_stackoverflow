@@ -8,14 +8,10 @@ class Questions::AnswersController < ApplicationController
     @answer.author = current_user
 
     if @answer.save
-      redirect_to @question
+      redirect_to @question, notice: 'Answer successfully added'
     else
-      render :new
+      redirect_to @question
     end
-  end
-
-  def new
-    @answer = Answer.new
   end
 
   def destroy
