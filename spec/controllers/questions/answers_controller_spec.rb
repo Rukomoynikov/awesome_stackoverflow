@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Questions::AnswersController, type: :controller do
-  let(:question) { create(:question) }
+  let!(:question) { create(:question) }
 
   describe 'GET #new' do
     before { get :new, params: { question_id: question.id } }
@@ -18,6 +18,12 @@ RSpec.describe Questions::AnswersController, type: :controller do
   end
 
   describe 'POST #create' do
+    let(:user) { create(:user) }
+
+    before do
+      login(user)
+    end
+
     context 'with valid attributes' do
       it 'saves answer to correct question' do
         expect {
