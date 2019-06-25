@@ -5,4 +5,11 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  has_many :questions, dependent: :delete_all
+  has_many :answers, dependent: :delete_all
+
+  def author_of? (resource)
+    self.id == resource.user_id
+  end
 end

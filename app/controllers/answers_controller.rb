@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
-class Questions::AnswersController < ApplicationController
-  before_action :set_question, only: [:create, :destroy]
+class AnswersController < ApplicationController
+  before_action :set_question, only: [:create]
 
   def create
     @answer = @question.answers.new(answer_params)
+
     @answer.author = current_user
 
     if @answer.save
@@ -15,12 +16,12 @@ class Questions::AnswersController < ApplicationController
   end
 
   def destroy
-    if answer.author.id == current_user.id
-      answer.delete
+    if current_user&.author_of?(answer)
+      answer.destroy
 
-      redirect_to question_path(@question)
+      redirect_to question_path(answer.question)
     else
-      redirect_to question_path(@question), notice: 'Sorry you can\'t delete this answer'
+      redirect_to question_path(answer.question), notice: "Sorry you can't delete this answer"
     end
   end
 

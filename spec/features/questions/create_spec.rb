@@ -24,6 +24,7 @@ feature 'User can create question', "
 
       expect(page).to have_content 'Your question successfully created.'
       expect(page).to have_content 'Title of a question'
+      expect(page).to have_content 'Text of a question'
     end
 
     scenario 'Asks a question with errors' do

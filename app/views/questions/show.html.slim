@@ -4,10 +4,8 @@ h1.title = question.title
 
 h2.subtitle Comments:
 
-= render 'questions/answers/form'
+= render 'answers/form'
 
-= render partial: "answer",
-        collection: answers,
-        as: :answer
+= render question.answers
 
 = render 'controls'

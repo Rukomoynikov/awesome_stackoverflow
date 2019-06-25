@@ -2,21 +2,21 @@
 
 require 'rails_helper'
 
-RSpec.describe Questions::AnswersController, type: :controller do
-  let!(:question) { create(:question) }
+RSpec.describe AnswersController, type: :controller do
+  let(:user) { create(:user) }
+  let!(:question) { create(:question, author: user) }
+  let!(:answer) { create(:answer, question: question, author: user) }
+
+  before do
+    login(user)
+  end
 
   describe 'POST #create' do
-    let(:user) { create(:user) }
-
-    before do
-      login(user)
-    end
-
     context 'with valid attributes' do
       it 'saves answer to correct question' do
         expect {
           post :create, params: { question_id: question.id, answer: attributes_for(:answer) }
-        }.to change(question.answers, :count).by(1)
+        }.to change(user.questions.first.answers, :count).by(1)
       end
 
       it 'redirects to show view' do
@@ -35,6 +35,31 @@ RSpec.describe Questions::AnswersController, type: :controller do
       it 'rerenders new view' do
         post :create, params: { question_id: question.id, answer: attributes_for(:answer, :invalid) }
         expect(response).to redirect_to question
+      end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    context 'author of answer' do
+      it 'deletes the answer' do
+        expect {
+          delete :destroy, params: { id: answer.id }
+        }.to change(Answer, :count).by(-1)
+      end
+
+      it 'redirects to the question' do
+        delete :destroy, params: { id: answer }
+        expect(response).to redirect_to question_path(question)
+      end
+    end
+
+    context 'nonauthor of answer' do
+      before { sign_out(user) }
+
+      it "can't delete the question" do
+        expect {
+          delete :destroy, params: { id: answer.id }
+        }.not_to change(Question, :count)
       end
     end
   end

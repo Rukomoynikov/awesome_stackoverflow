@@ -17,10 +17,8 @@ feature 'User can add answer to question', "
     end
 
     scenario 'can add an answer' do
-      within "form[action='/questions/#{ question.id }/answers']" do
-        fill_in 'Text', with: 'This is a one best comment'
-        click_on 'Create Answer'
-      end
+      fill_in 'Text', with: 'This is a one best comment'
+      click_on 'Create Answer'
 
       expect(page).to have_content('Answer successfully added')
     end
@@ -33,9 +31,10 @@ feature 'User can add answer to question', "
   end
 
   context 'anomymous user' do
-    scenario 'can\'t see a form for a new answer' do
+    scenario "can't add a new answer" do
       visit question_path(question)
       click_on 'Create Answer'
+      fill_in 'Text', with: 'Text of new comment'
 
       expect(page).not_to have_content('Answer successfully added')
     end

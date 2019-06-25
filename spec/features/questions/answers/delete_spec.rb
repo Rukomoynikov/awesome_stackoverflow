@@ -16,8 +16,8 @@ feature 'User can delete answer', "
       scenario 'can delete a answer' do
         sign_in(user)
         visit question_path(question)
-
-        expect { click_on 'Delete answer' }.to change(Answer, :count).by(-1)
+        click_on 'Delete answer'
+        expect(page).not_to have_content answer.text
       end
     end
 
@@ -27,7 +27,7 @@ feature 'User can delete answer', "
         sign_in(another_user)
         visit question_path(question)
 
-        expect(page).not_to have_content 'Delete answer'
+        expect(page).not_to have_link 'Delete answer'
       end
     end
   end
@@ -36,7 +36,7 @@ feature 'User can delete answer', "
     scenario 'can\'t delete a answer' do
       visit question_path(question)
 
-      expect(page).not_to have_content 'Delete answer'
+      expect(page).not_to have_link 'Delete answer'
     end
   end
 end

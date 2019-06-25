@@ -16,6 +16,7 @@ feature 'View question', "
 
   scenario 'View question details' do
     expect(page).to have_content(question.title)
+    expect(page).to have_content(question.text)
   end
 
   scenario 'View answers to a question' do

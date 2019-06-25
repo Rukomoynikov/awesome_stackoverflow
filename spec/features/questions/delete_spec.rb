@@ -16,7 +16,8 @@ feature 'User can delete question', "
         sign_in(user)
         visit question_path(question)
 
-        expect { click_on 'Delete question' }.to change(Question, :count).by(-1)
+        click_on 'Delete question'
+        expect(page).to have_content 'List of questions'
       end
     end
 
@@ -26,7 +27,7 @@ feature 'User can delete question', "
         sign_in(another_user)
         visit question_path(question)
 
-        expect(page).not_to have_content 'Delete question'
+        expect(page).not_to have_link 'Delete question'
       end
     end
   end
@@ -35,7 +36,7 @@ feature 'User can delete question', "
     scenario 'can\'t delete a question' do
       visit question_path(question)
 
-      expect(page).not_to have_content 'Delete question'
+      expect(page).not_to have_link 'Delete question'
     end
   end
 end
