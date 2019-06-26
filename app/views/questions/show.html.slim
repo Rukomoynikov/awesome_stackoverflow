@@ -1,10 +1,10 @@
 .level
   .level--left
-    h1.title = question.title
+    h1.title = @question.title
   .level--right
-    = render 'controls'
+    = render 'questions/controls'
 
-div == question.text
+div == @question.text
 
 hr
 
@@ -12,4 +12,4 @@ h2.subtitle Comments:
 
 = render 'answers/form'
 
-= render question.answers
+= render @question.answers

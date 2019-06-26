@@ -26,7 +26,7 @@ feature 'User can add answer to question', "
     scenario 'can\'t add add an answer with errors' do
       click_on 'Create Answer'
 
-      expect(page).not_to have_content('Answer successfully added')
+      expect(page).to have_content("Text can't be blank")
     end
   end
 

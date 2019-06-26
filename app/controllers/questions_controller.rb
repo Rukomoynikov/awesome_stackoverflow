@@ -2,6 +2,8 @@
 
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_question, except: [:index]
+  before_action :set_answer, only: [:show]
 
   def index
     @questions = Question.all
@@ -28,41 +30,31 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    if question.update question_params
-      redirect_to question
+    if @question.update question_params
+      redirect_to @question
     else
       render :edit
     end
   end
 
   def destroy
-    if question.author.id == current_user.id
-      question.delete
+    if @question.author.id == current_user.id
+      @question.delete
 
       redirect_to questions_path
     else
-      redirect_to question, notice: 'Sorry you can\'t delete this question'
+      redirect_to @question, notice: 'Sorry you can\'t delete this question'
     end
   end
 
   private
-    def question
+    def set_question
       @question ||= params[:id] ? Question.find(params[:id]) : Question.new
     end
 
-    helper_method :question
-
-    def answers
-      @answers ||= @question.answers
-    end
-
-    helper_method :answers
-
-    def answer
+    def set_answer
       @answer ||= Answer.new
     end
-
-    helper_method :answer
 
     def question_params
       params.require(:question).permit(:title, :text)

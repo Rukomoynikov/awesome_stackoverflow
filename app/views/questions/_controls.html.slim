@@ -1,5 +1,5 @@
-- if current_user&.author_of?(question)
+- if current_user&.author_of?(@question)
   = link_to 'Delete question',
-          question_path(question),
+          question_path(@question),
           method: :delete,
           class: 'button'
