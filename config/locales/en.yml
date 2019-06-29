@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+  helpers:
+    submit:
+      question:
+        create: "Ask"
+

@@ -1,0 +1,8 @@
+- if answer.persisted?
+  div.levels
+    .levels__left = answer.text
+    - if current_user&.author_of?(answer)
+      .levels__right
+        = link_to 'Delete answer',
+                answer_path(answer),
+                method: :delete

@@ -15,6 +15,10 @@ html
         .navbar-menu
           .navbar-start
             = link_to 'Questions', questions_path, class: 'navbar-item'
+          .navbar-end
+            = render 'shared/user_navigation'
 
     .container
+      p.notice = notice
+      p.alert = alert
       = yield

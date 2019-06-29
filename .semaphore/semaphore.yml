@@ -85,15 +85,17 @@ blocks:
       - name: RSpec - model tests
         commands:
           - bundle exec rspec spec/models
+      - name: RSpec - controller tests
+        commands:
+          - bundle exec rspec spec/controllers
+      - name: RSpec - feature specs
+        commands:
+          - bundle exec rspec spec/features
 
-#      - name: RSpec - controller tests
-#        commands:
-#          - bundle exec rspec spec/controllers
-
-  # Note that it's possible to define an agent on a per-block level.
-  # For example, if your integration tests need more RAM, you could override
-  # agent configuration here to use e1-standard-8.
-  # See https://docs.semaphoreci.com/article/50-pipeline-yaml#agent-in-task
+#  # Note that it's possible to define an agent on a per-block level.
+#  # For example, if your integration tests need more RAM, you could override
+#  # agent configuration here to use e1-standard-8.
+#  # See https://docs.semaphoreci.com/article/50-pipeline-yaml#agent-in-task
 #  - name: Integration tests
 #    task:
 #      prologue:
@@ -101,6 +103,7 @@ blocks:
 #          - checkout
 #          - cache restore gems-$SEMAPHORE_GIT_BRANCH-$(checksum Gemfile.lock),gems-$SEMAPHORE_GIT_BRANCH-,gems-master-
 #          - sem-service start postgres
+#          - cat /dev/null > config/database.yml
 #          - sem-version ruby 2.6.0
 #          - bundle install --deployment --path vendor/bundle
 #          - bundle exec rake db:setup
