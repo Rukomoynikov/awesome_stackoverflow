@@ -17,7 +17,7 @@ feature 'User can delete question', "
         visit question_path(question)
 
         click_on 'Delete question'
-        expect(page).to have_content 'List of questions'
+        expect(page).to_not have_content question.title
       end
     end
 

@@ -20,7 +20,7 @@ feature 'User can add answer to question', "
       fill_in 'Text', with: 'This is a one best comment'
       click_on 'Create Answer'
 
-      expect(page).to have_content('This is a one best comment')
+      expect(page).to have_content 'This is a one best comment'
     end
 
     scenario 'can\'t add add an answer with errors' do
@@ -36,7 +36,7 @@ feature 'User can add answer to question', "
       click_on 'Create Answer'
       fill_in 'Text', with: 'Text of new comment'
 
-      expect(page).not_to have_content('Answer successfully added')
+      expect(page).to have_content("Text can't be blank")
     end
   end
 end

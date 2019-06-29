@@ -6,5 +6,5 @@ class Answer < ApplicationRecord
              class_name: 'User',
              foreign_key: :user_id
 
-  validates :text, :question, :author, presence: true
+  validates :text, :question, presence: true
 end

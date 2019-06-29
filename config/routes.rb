@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :questions do
     resources :answers,
-              only: [:create, :new, :destroy],
+              only: [:create, :destroy],
               shallow: true
   end
 end
